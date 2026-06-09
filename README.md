@@ -1,4 +1,5 @@
 # SakhiSign
+<<<<<<< HEAD
 
 AI-based sign-language **learning and evaluation** platform.
 
@@ -128,3 +129,6 @@ For each, run `python record_sign.py <sign>` after I add its config entry, or
 send the raw `recordings/<sign>.json`. A couple of *user* attempts per sign
 (`--user`) are also useful for calibrating the score thresholds (`tau`) per
 sign.
+=======
+SakhiSign helps women learn and master sign language for emergencies, healthcare and personal safety — with instant, AI-powered feedback on every attempt.
+>>>>>>> 1ba03420fef73290b13130111c0470144b075fe6
