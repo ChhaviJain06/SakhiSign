@@ -1,0 +1,162 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  @apply bg-cream text-ink font-sans antialiased;
+  font-size: 15px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Respect users who prefer reduced motion. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+@layer components {
+  /* --- Typography scale ---------------------------------------------------
+     One consistent hierarchy used across the whole app. */
+  .eyebrow {
+    @apply text-[11px] font-bold uppercase tracking-[0.16em] text-ink-faint;
+  }
+  .t-display {
+    @apply text-[28px] sm:text-[36px] font-extrabold leading-[1.1] tracking-tightest;
+  }
+  .t-h1 {
+    @apply text-[22px] sm:text-[26px] font-extrabold leading-tight tracking-tightest;
+  }
+  .t-h2 {
+    @apply text-[17px] sm:text-[19px] font-bold leading-snug tracking-tightest;
+  }
+  .t-h3 {
+    @apply text-[15px] font-bold leading-snug;
+  }
+  .t-body {
+    @apply text-[15px] leading-relaxed text-ink-soft;
+  }
+  .t-caption {
+    @apply text-[13px] leading-relaxed text-ink-soft;
+  }
+
+  /* --- Surfaces ----------------------------------------------------------- */
+  .card {
+    @apply bg-white rounded-card border border-navy/[0.06] shadow-soft;
+  }
+  .card-interactive {
+    @apply card transition-all duration-200 hover:-translate-y-0.5 hover:shadow-cardHover
+           hover:border-navy/10 focus-within:-translate-y-0.5 focus-within:shadow-cardHover;
+  }
+  .surface {
+    @apply bg-cream rounded-xl2 border border-navy/[0.04];
+  }
+
+  /* --- Buttons ------------------------------------------------------------ */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 min-h-[46px] px-5
+           rounded-pill font-semibold text-[15px] transition-all duration-150
+           active:scale-[0.97] focus:outline-none focus-visible:ring-4
+           focus-visible:ring-accent/30 disabled:opacity-60 disabled:pointer-events-none;
+  }
+  .btn-primary {
+    @apply btn bg-accent text-white hover:bg-accent-dark shadow-soft hover:shadow-card;
+  }
+  .btn-ghost {
+    @apply btn bg-white text-navy border-2 border-navy/[0.12] hover:border-navy/25 hover:bg-navy/[0.02];
+  }
+  .btn-dark {
+    @apply btn bg-navy text-white hover:bg-navy-700 shadow-soft;
+  }
+  .btn-glass {
+    @apply btn bg-white/15 text-white hover:bg-white/25 backdrop-blur-sm
+           focus-visible:ring-white/30;
+  }
+
+  /* --- Pills / chips ------------------------------------------------------ */
+  .pill {
+    @apply inline-flex items-center gap-1 px-3 py-1 rounded-pill text-xs font-semibold;
+  }
+  .chip {
+    @apply inline-flex items-center gap-1.5 px-3.5 h-9 rounded-pill text-[13px] font-semibold
+           border-2 transition-colors duration-150 cursor-pointer select-none;
+  }
+
+  /* --- Inputs ------------------------------------------------------------- */
+  .input {
+    @apply w-full min-h-[48px] px-4 rounded-2xl border-2 border-navy/10 bg-white
+           text-[15px] placeholder:text-ink-faint transition-colors
+           focus:outline-none focus:border-accent focus:ring-4 focus:ring-accent/[0.15];
+  }
+
+  /* --- Hero panel (caller sets the radius) -------------------------------- */
+  .hero-panel {
+    @apply text-white relative overflow-hidden;
+    background: linear-gradient(160deg, #15295c 0%, #0b1f4b 55%, #08183a 100%);
+  }
+
+  /* --- Skeleton loader ---------------------------------------------------- */
+  .skeleton {
+    @apply relative overflow-hidden rounded-2xl bg-navy/[0.06];
+  }
+  .skeleton::after {
+    content: "";
+    @apply absolute inset-0;
+    transform: translateX(-100%);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.55),
+      transparent
+    );
+    animation: shimmer 1.4s infinite;
+  }
+}
+
+/* Decorative circular pattern for navy panels (flight-app vibe). */
+.navy-pattern::before,
+.navy-pattern::after {
+  content: "";
+  position: absolute;
+  border-radius: 9999px;
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.10), transparent 70%);
+  pointer-events: none;
+}
+.navy-pattern::before {
+  width: 280px;
+  height: 280px;
+  top: -100px;
+  right: -80px;
+}
+.navy-pattern::after {
+  width: 200px;
+  height: 200px;
+  bottom: -90px;
+  left: -60px;
+}
+
+/* Page enter animation (applied by AppShell on route change). */
+.page-enter {
+  animation: fadeUp 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Tidy scrollbar on desktop. */
+@media (min-width: 768px) {
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(11, 31, 75, 0.18);
+    border-radius: 999px;
+    border: 3px solid #f4f5fa;
+  }
+}

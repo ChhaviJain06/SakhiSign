@@ -1,0 +1,12 @@
+# SakhiSign Python AI service + tooling
+#
+# Core engine (engine/) has NO third-party dependencies - pure Python.
+# These are for the FastAPI service and the webcam recording CLIs.
+
+fastapi>=0.110
+uvicorn[standard]>=0.29
+pydantic>=2.6
+
+# Webcam capture / landmark extraction (record_sign.py only)
+opencv-python>=4.9
+mediapipe>=0.10

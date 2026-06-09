@@ -1,0 +1,17 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+user_attempt.json
+.DS_Store
+*.egg-info/
+
+# Node
+node_modules/
+dist/
+.env
+.env.local
+npm-debug.log*
+
+# Vite
+web/dist/
