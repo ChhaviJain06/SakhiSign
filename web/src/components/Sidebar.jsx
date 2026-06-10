@@ -1,12 +1,13 @@
 import { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import Logo from "./Logo.jsx";
-import { HomeIcon, CameraIcon, ChartIcon, InfoIcon, XIcon } from "./icons.jsx";
+import { HomeIcon, CameraIcon, ChartIcon, InfoIcon, ModelIcon, XIcon } from "./icons.jsx";
 
 const LINKS = [
   { to: "/", label: "Home", Icon: HomeIcon, end: true },
   { to: "/practice", label: "Practice", Icon: CameraIcon },
   { to: "/dashboard", label: "Dashboard", Icon: ChartIcon },
+  { to: "/model", label: "Model", Icon: ModelIcon },
   { to: "/about", label: "About", Icon: InfoIcon },
 ];
 

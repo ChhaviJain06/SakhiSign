@@ -1,4 +1,4 @@
-import { scoreColor, scoreBar, verdictLabel, scoreHex } from "../lib/ui.js";
+import { scoreColor, scoreBar, verdictLabel, scoreHex, fingerInText, FINGER_COLORS } from "../lib/ui.js";
 
 const COMPONENTS = [
   { key: "handshape", label: "Handshape" },
@@ -61,12 +61,18 @@ export default function AttemptReview({ attempt }) {
       {/* Feedback */}
       {attempt.feedbackMessages?.length > 0 && (
         <ul className="mt-4 space-y-1.5">
-          {attempt.feedbackMessages.slice(0, 4).map((m, i) => (
-            <li key={i} className="flex gap-2 text-[13px] text-ink">
-              <span className="text-accent-dark font-bold shrink-0">›</span>
-              <span>{m}</span>
-            </li>
-          ))}
+          {attempt.feedbackMessages.slice(0, 4).map((m, i) => {
+            const finger = fingerInText(m);
+            return (
+              <li key={i} className="flex gap-2 text-[13px] text-ink items-start">
+                <span
+                  className="mt-[6px] w-2 h-2 rounded-full shrink-0 ring-2 ring-white"
+                  style={{ background: finger ? FINGER_COLORS[finger] : "#FF9F1C" }}
+                />
+                <span>{m}</span>
+              </li>
+            );
+          })}
         </ul>
       )}
     </div>

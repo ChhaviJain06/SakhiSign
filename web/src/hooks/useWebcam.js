@@ -15,6 +15,9 @@ export function useWebcam() {
   const rafRef = useRef(null);
   const recordingRef = useRef(null); // { frames, until, resolve, requireBoth }
   const lastTsRef = useRef(-1);
+  const landmarkRef = useRef([]);    // latest raw hands for the skeleton overlay
+  const fpsRef = useRef(0);          // smoothed detection FPS (telemetry)
+  const fpsPrevRef = useRef(0);
 
   const [status, setStatus] = useState("idle"); // idle | loading | ready | error
   const [trackingReady, setTrackingReady] = useState(false);
@@ -55,12 +58,21 @@ export function useWebcam() {
     ctx.restore();
 
     let frame = { left_hand: null, right_hand: null };
+    let result = null;
     try {
-      const result = landmarker.detectForVideo(canvas, ts);
+      result = landmarker.detectForVideo(canvas, ts);
       frame = resultToFrame(result);
     } catch {
       /* transient detect error - skip this frame */
     }
+
+    // Expose raw landmarks for the live skeleton overlay.
+    landmarkRef.current = (result?.landmarks || []).map((points) => ({ points }));
+
+    // Smoothed FPS (telemetry readout).
+    const dt = ts - (fpsPrevRef.current || ts);
+    fpsPrevRef.current = ts;
+    if (dt > 0) fpsRef.current = fpsRef.current * 0.85 + (1000 / dt) * 0.15;
 
     setHands({ left: !!frame.left_hand, right: !!frame.right_hand });
 
@@ -151,7 +163,7 @@ export function useWebcam() {
 
   useEffect(() => () => stop(), [stop]);
 
-  return { videoRef, status, trackingReady, hands, error, start, stop, record };
+  return { videoRef, status, trackingReady, hands, error, start, stop, record, landmarkRef, fpsRef };
 }
 
 /** Map getUserMedia DOMExceptions to actionable messages. */

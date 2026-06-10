@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext.jsx";
+import { ChevronDownIcon, ChartIcon, LogoutIcon, FlameIcon } from "./icons.jsx";
 
 /**
  * Profile dropdown in the top bar.
@@ -42,7 +43,7 @@ export default function ProfileMenu() {
           {initial}
         </span>
         <span className="text-[13px] font-semibold text-navy hidden sm:block max-w-[90px] truncate">{firstName}</span>
-        <span className="text-ink-faint text-xs">▾</span>
+        <ChevronDownIcon className="w-3.5 h-3.5 text-ink-faint" />
       </button>
 
       {open && (
@@ -64,7 +65,9 @@ export default function ProfileMenu() {
               </div>
             </div>
             <div className="flex gap-2 mt-3">
-              <span className="pill bg-white text-ink-soft">🔥 {user?.streak ?? 0} day streak</span>
+              <span className="pill bg-white text-ink-soft">
+                <FlameIcon className="w-3.5 h-3.5 text-rose-500" /> {user?.streak ?? 0} day streak
+              </span>
               {user?.isGuest && <span className="pill bg-accent/15 text-accent-dark">Guest</span>}
             </div>
           </div>
@@ -75,7 +78,7 @@ export default function ProfileMenu() {
               onClick={() => { setOpen(false); navigate("/dashboard"); }}
               className="w-full text-left px-3 py-2.5 rounded-xl text-[14px] font-medium text-navy hover:bg-cream flex items-center gap-2.5"
             >
-              <span>📊</span> My progress
+              <ChartIcon className="w-[18px] h-[18px] text-ink-soft" /> My progress
             </button>
             {user?.isGuest && (
               <button
@@ -83,7 +86,7 @@ export default function ProfileMenu() {
                 onClick={() => { setOpen(false); logout(); navigate("/signup"); }}
                 className="w-full text-left px-3 py-2.5 rounded-xl text-[14px] font-medium text-navy hover:bg-cream flex items-center gap-2.5"
               >
-                <span>✨</span> Create an account
+                <span className="w-[18px] text-center text-ink-soft font-bold">+</span> Create an account
               </button>
             )}
             <button
@@ -91,7 +94,7 @@ export default function ProfileMenu() {
               onClick={() => { setOpen(false); logout(); }}
               className="w-full text-left px-3 py-2.5 rounded-xl text-[14px] font-semibold text-danger-dark hover:bg-danger/5 flex items-center gap-2.5"
             >
-              <span>↩</span> Sign out
+              <LogoutIcon className="w-[18px] h-[18px]" /> Sign out
             </button>
           </div>
         </div>

@@ -9,6 +9,7 @@ import SignDetailPage from "./pages/SignDetailPage.jsx";
 import PracticePage from "./pages/PracticePage.jsx";
 import DashboardPage from "./pages/DashboardPage.jsx";
 import AboutPage from "./pages/AboutPage.jsx";
+import ModelPage from "./pages/ModelPage.jsx";
 
 export default function App() {
   return (
@@ -32,6 +33,7 @@ export default function App() {
         <Route path="/practice" element={<PracticePage />} />
         <Route path="/practice/:slug" element={<PracticePage />} />
         <Route path="/dashboard" element={<DashboardPage />} />
+        <Route path="/model" element={<ModelPage />} />
         <Route path="/about" element={<AboutPage />} />
       </Route>
 

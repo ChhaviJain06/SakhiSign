@@ -22,6 +22,10 @@ app.use("/api/dashboard", dashboardRoutes);
 
 // Centralized error handler
 app.use((err, _req, res, _next) => {
+  // Malformed JSON body / bad request payloads -> 400, not 500.
+  if (err?.type === "entity.parse.failed" || err instanceof SyntaxError) {
+    return res.status(400).json({ error: "Invalid request body" });
+  }
   console.error("[error]", err);
   res.status(500).json({ error: "Internal server error" });
 });

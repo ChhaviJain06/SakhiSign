@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import SignGlyph from "./SignGlyph.jsx";
+import { ArrowRightIcon } from "./icons.jsx";
 import { categoryPill, scoreColor, scoreBar, SIGN_TAGLINE } from "../lib/ui.js";
 
 /**
@@ -50,7 +51,9 @@ export default function SignCard({ sign }) {
             {practised ? "Continue learning" : "Start learning"}
           </span>
           <span className="grid place-items-center w-7 h-7 rounded-pill bg-cream text-navy
-                           transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden>→</span>
+                           transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden>
+            <ArrowRightIcon className="w-4 h-4" />
+          </span>
         </div>
       </div>
     </button>

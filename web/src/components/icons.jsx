@@ -16,11 +16,36 @@ export const ChartIcon = (p) => (
 export const InfoIcon = (p) => (
   <svg viewBox="0 0 24 24" className={p.className} {...base}><circle cx="12" cy="12" r="9" /><path d="M12 11v5M12 8h.01" /></svg>
 );
+export const ModelIcon = (p) => (
+  <svg viewBox="0 0 24 24" className={p.className} {...base}>
+    <circle cx="5" cy="6" r="1.6" /><circle cx="5" cy="12" r="1.6" /><circle cx="5" cy="18" r="1.6" />
+    <circle cx="13" cy="9" r="1.6" /><circle cx="13" cy="15" r="1.6" /><circle cx="20" cy="12" r="1.6" />
+    <path d="M6.6 6.6l5 2M6.6 11.6l5-2M6.6 12.4l5 2M6.6 17.4l5-2M14.6 9.6l4 1.8M14.6 14.4l4-1.8" />
+  </svg>
+);
 export const MenuIcon = (p) => (
   <svg viewBox="0 0 24 24" className={p.className} {...base}><path d="M3 6h18M3 12h18M3 18h18" /></svg>
 );
 export const XIcon = (p) => (
   <svg viewBox="0 0 24 24" className={p.className} {...base}><path d="M6 6l12 12M18 6L6 18" /></svg>
+);
+export const SearchIcon = (p) => (
+  <svg viewBox="0 0 24 24" className={p.className} {...base}><circle cx="11" cy="11" r="7" /><path d="M21 21l-4.3-4.3" /></svg>
+);
+export const ArrowRightIcon = (p) => (
+  <svg viewBox="0 0 24 24" className={p.className} {...base}><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+);
+export const ArrowLeftIcon = (p) => (
+  <svg viewBox="0 0 24 24" className={p.className} {...base}><path d="M19 12H5M11 18l-6-6 6-6" /></svg>
+);
+export const ChevronDownIcon = (p) => (
+  <svg viewBox="0 0 24 24" className={p.className} {...base}><path d="M6 9l6 6 6-6" /></svg>
+);
+export const LogoutIcon = (p) => (
+  <svg viewBox="0 0 24 24" className={p.className} {...base}><path d="M15 4h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-3" /><path d="M10 17l-5-5 5-5" /><path d="M5 12h12" /></svg>
+);
+export const CheckIcon = (p) => (
+  <svg viewBox="0 0 24 24" className={p.className} {...base}><path d="M5 12.5l4.5 4.5L19 7" /></svg>
 );
 export const HandIcon = (p) => (
   <svg viewBox="0 0 24 24" className={p.className} {...base}><path d="M8 13V5a1.5 1.5 0 0 1 3 0v6" /><path d="M11 11V4a1.5 1.5 0 0 1 3 0v7" /><path d="M14 11V5.5a1.5 1.5 0 0 1 3 0V13c0 4-2.5 7-6.5 7C7 20 5 18 4 15l-1.2-3a1.4 1.4 0 0 1 2.3-1.5L8 13" /></svg>

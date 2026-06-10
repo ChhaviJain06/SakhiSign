@@ -4,7 +4,8 @@ import { PlayIcon } from "../components/icons.jsx";
 import { Skeleton } from "../components/Skeleton.jsx";
 import AttemptReview from "../components/AttemptReview.jsx";
 import SignGlyph from "../components/SignGlyph.jsx";
-import { categoryPill, getSignInfo } from "../lib/ui.js";
+import { InfoIcon, ChartIcon } from "../components/icons.jsx";
+import { categoryPill, getSignInfo, getTutorial } from "../lib/ui.js";
 
 export default function SignDetailPage() {
   const { slug } = useParams();
@@ -15,6 +16,7 @@ export default function SignDetailPage() {
   if (error) return <p className="text-danger-dark">{error}</p>;
 
   const info = getSignInfo(sign.slug);
+  const tutorial = getTutorial(sign.slug);
 
   return (
     <div className="space-y-5 max-w-3xl mx-auto">
@@ -37,13 +39,34 @@ export default function SignDetailPage() {
       {/* Tutorial media */}
       <div className="card overflow-hidden">
         <div className="aspect-video bg-gradient-to-br from-navy-700 to-navy-900 grid place-items-center text-white relative navy-pattern">
-          {sign.tutorialGifUrl && sign.tutorialVideoReady ? (
-            <img src={sign.tutorialGifUrl} alt={`${sign.name} tutorial`} className="w-full h-full object-cover" />
+          {tutorial?.src && /\.gif$/i.test(tutorial.src) ? (
+            <img
+              src={tutorial.src}
+              alt={`${sign.name} sign tutorial`}
+              className="w-full h-full object-contain bg-black"
+            />
+          ) : tutorial?.src ? (
+            <video
+              src={tutorial.src}
+              className="w-full h-full object-contain bg-black"
+              controls
+              loop
+              muted
+              playsInline
+            />
+          ) : tutorial?.youtube ? (
+            <iframe
+              className="w-full h-full"
+              src={`https://www.youtube.com/embed/${tutorial.youtube}`}
+              title={`${sign.name} tutorial`}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
           ) : (
             <div className="text-center relative z-10">
-              <button className="grid place-items-center w-16 h-16 rounded-pill bg-white/15 mx-auto mb-3 hover:bg-white/25 transition-colors">
+              <span className="grid place-items-center w-16 h-16 rounded-pill bg-white/15 mx-auto mb-3">
                 <PlayIcon className="w-7 h-7 translate-x-0.5" />
-              </button>
+              </span>
               <p className="t-h3">Tutorial video coming soon</p>
               <p className="text-[13px] text-white/55 mt-0.5">A demo of the {sign.name} sign will play here.</p>
             </div>
@@ -54,7 +77,9 @@ export default function SignDetailPage() {
       {/* WHAT THIS SIGN MEANS — content arrives later (via WhatsApp). */}
       <section className="card p-5">
         <div className="flex items-center gap-2 mb-3">
-          <span className="grid place-items-center w-8 h-8 rounded-xl bg-accent/12 text-accent-dark">💬</span>
+          <span className="grid place-items-center w-8 h-8 rounded-xl bg-accent/12 text-accent-dark">
+            <InfoIcon className="w-[18px] h-[18px]" />
+          </span>
           <h2 className="t-h2 text-navy">What this sign means</h2>
         </div>
 
@@ -86,8 +111,7 @@ export default function SignDetailPage() {
               A clear explanation of what the <span className="font-semibold text-navy">{sign.name}</span> sign
               means and the real-life situations where you'd use it will appear here.
             </p>
-            <div className="surface p-4 flex items-start gap-3">
-              <span className="text-lg">✍️</span>
+            <div className="surface p-4">
               <p className="t-caption">
                 Detailed meaning &amp; usage for this sign is being added. Check back soon.
               </p>
@@ -99,14 +123,15 @@ export default function SignDetailPage() {
       {/* Your last performance */}
       <section className="card p-5">
         <div className="flex items-center gap-2 mb-3">
-          <span className="grid place-items-center w-8 h-8 rounded-xl bg-teal/12 text-teal-dark">📊</span>
+          <span className="grid place-items-center w-8 h-8 rounded-xl bg-teal/12 text-teal-dark">
+            <ChartIcon className="w-[18px] h-[18px]" />
+          </span>
           <h2 className="t-h2 text-navy">Your last performance</h2>
         </div>
         {sign.lastAttempt ? (
           <AttemptReview attempt={sign.lastAttempt} />
         ) : (
           <div className="surface p-5 text-center">
-            <div className="text-3xl mb-1">🎯</div>
             <p className="t-body">You haven't practised this sign yet.</p>
             <p className="t-caption mt-0.5">Practise it to see your score and feedback here.</p>
           </div>

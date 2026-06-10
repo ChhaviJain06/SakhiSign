@@ -1,11 +1,12 @@
 import ScoreRing from "./ScoreRing.jsx";
-import { scoreColor, scoreBar, verdictLabel } from "../lib/ui.js";
+import ComponentRadar from "./ComponentRadar.jsx";
+import { scoreColor, scoreBar, verdictLabel, fingerInText, FINGER_COLORS } from "../lib/ui.js";
 
 const COMPONENTS = [
-  { key: "handshape", label: "Handshape", hint: "Finger positions" },
-  { key: "position", label: "Position", hint: "Where the hands are" },
-  { key: "movement", label: "Movement", hint: "The motion" },
-  { key: "timing", label: "Timing", hint: "Pace & rhythm" },
+  { key: "handshape", label: "Handshape" },
+  { key: "position", label: "Position" },
+  { key: "movement", label: "Movement" },
+  { key: "timing", label: "Timing" },
 ];
 
 /**
@@ -49,26 +50,26 @@ export default function ResultsPanel({ signName, result, onPracticeAgain, onTryA
           )}
         </div>
 
-        {/* Component breakdown */}
-        <p className="eyebrow mb-2">Breakdown</p>
-        <div className="grid grid-cols-2 gap-3 mb-6">
-          {COMPONENTS.map(({ key, label, hint }) => {
-            const v = Math.round(result.componentScores?.[key] ?? 0);
-            return (
-              <div key={key} className="surface p-3.5">
-                <div className="flex justify-between items-start mb-2">
-                  <div>
-                    <p className="t-h3 text-navy leading-none">{label}</p>
-                    <p className="text-[11px] text-ink-faint mt-1">{hint}</p>
+        {/* Component breakdown — radar + values */}
+        <p className="eyebrow mb-2">Component breakdown</p>
+        <div className="surface p-4 mb-6 flex flex-col sm:flex-row items-center gap-5">
+          <ComponentRadar scores={result.componentScores} size={196} />
+          <div className="flex-1 w-full grid grid-cols-2 gap-x-5 gap-y-3">
+            {COMPONENTS.map(({ key, label }) => {
+              const v = Math.round(result.componentScores?.[key] ?? 0);
+              return (
+                <div key={key}>
+                  <div className="flex justify-between items-center text-[12px] mb-1">
+                    <span className="text-ink-soft">{label}</span>
+                    <span className="font-bold text-navy">{v}%</span>
                   </div>
-                  <span className={`pill ${scoreColor(v)}`}>{v}%</span>
+                  <div className="h-1.5 rounded-pill bg-navy/10 overflow-hidden">
+                    <div className={`h-full ${scoreBar(v)} transition-all duration-700`} style={{ width: `${v}%` }} />
+                  </div>
                 </div>
-                <div className="h-1.5 rounded-pill bg-navy/10 overflow-hidden">
-                  <div className={`h-full ${scoreBar(v)} transition-all duration-700`} style={{ width: `${v}%` }} />
-                </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
 
         {/* Suggestions */}
@@ -76,12 +77,19 @@ export default function ResultsPanel({ signName, result, onPracticeAgain, onTryA
           <div className="mb-6">
             <p className="eyebrow mb-2">{great ? "Notes" : "How to improve"}</p>
             <ul className="space-y-2">
-              {result.feedbackMessages.map((m, i) => (
-                <li key={i} className="flex gap-2.5 t-body text-ink">
-                  <span className="text-accent-dark font-bold shrink-0">›</span>
-                  <span>{m}</span>
-                </li>
-              ))}
+              {result.feedbackMessages.map((m, i) => {
+                const finger = fingerInText(m);
+                return (
+                  <li key={i} className="flex gap-2.5 t-body text-ink items-start">
+                    <span
+                      className="mt-[7px] w-2.5 h-2.5 rounded-full shrink-0 ring-2 ring-white"
+                      style={{ background: finger ? FINGER_COLORS[finger] : "#FF9F1C" }}
+                      title={finger ? `${finger} finger` : undefined}
+                    />
+                    <span>{m}</span>
+                  </li>
+                );
+              })}
             </ul>
           </div>
         )}

@@ -4,6 +4,7 @@ import { useSigns } from "../hooks/useSigns.js";
 import { useAuth } from "../context/AuthContext.jsx";
 import SignCard from "../components/SignCard.jsx";
 import { SignCardSkeleton } from "../components/Skeleton.jsx";
+import { SearchIcon } from "../components/icons.jsx";
 
 export default function HomePage() {
   const { signs, loading, error } = useSigns();
@@ -59,7 +60,7 @@ export default function HomePage() {
         {/* Search (left) + filters (right) — single row on desktop */}
         <div className="flex flex-col md:flex-row md:items-center gap-3 mb-5">
           <div className="relative md:flex-1 md:max-w-md">
-            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-ink-faint" aria-hidden>🔍</span>
+            <SearchIcon className="w-[18px] h-[18px] absolute left-4 top-1/2 -translate-y-1/2 text-ink-faint" />
             <input
               className="input pl-11"
               placeholder="Search signs…"

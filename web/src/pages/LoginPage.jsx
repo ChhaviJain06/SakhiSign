@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../context/AuthContext.jsx";
-import { HandIcon } from "../components/icons.jsx";
+import { CheckIcon } from "../components/icons.jsx";
 import Logo from "../components/Logo.jsx";
 
 export default function LoginPage() {
   const { login, continueAsGuest } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
-  const dest = location.state?.from || "/learn";
+  const dest = location.state?.from || "/";
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -21,7 +21,7 @@ export default function LoginPage() {
     setError(null);
     try {
       await login(email, password);
-      navigate(dest, { replace: true });
+      navigate("/", { replace: true });
     } catch (err) {
       setError(err.response?.data?.error || "Login failed");
     } finally {
@@ -33,7 +33,7 @@ export default function LoginPage() {
     setBusy(true);
     try {
       await continueAsGuest();
-      navigate(dest, { replace: true });
+      navigate("/", { replace: true });
     } finally {
       setBusy(false);
     }
@@ -68,21 +68,52 @@ export default function LoginPage() {
   );
 }
 
+const BENEFITS = [
+  "Practise on camera with instant AI feedback",
+  "Learn key signs for emergencies and healthcare",
+  "Built for women's safety and independence",
+];
+
 export function AuthLayout({ title, subtitle, children }) {
   return (
-    <div className="min-h-screen hero-panel navy-pattern flex flex-col rounded-none">
-      <div className="flex-1 flex flex-col justify-center px-6 py-10 text-white max-w-app mx-auto w-full">
-        <div className="flex items-center gap-2.5 mb-10">
+    <div className="min-h-screen lg:grid lg:grid-cols-2">
+      {/* Brand / value panel (desktop) */}
+      <div className="hidden lg:flex hero-panel navy-pattern flex-col justify-between p-12">
+        <div className="relative flex items-center gap-2.5">
           <Logo className="w-10 h-10" />
-          <span className="text-xl font-extrabold tracking-tightest">SakhiSign</span>
+          <span className="text-xl font-extrabold tracking-tightest text-white">SakhiSign</span>
         </div>
-        <HandIcon className="w-12 h-12 text-accent mb-5 animate-float" />
-        <h1 className="t-display mb-2">{title}</h1>
-        <p className="text-white/65 mb-7 text-[15px] leading-relaxed">{subtitle}</p>
-        <div className="card p-5 text-navy animate-fadeUp">{children}</div>
-        <p className="text-center text-[12px] text-white/40 mt-8">
-          Learn life-saving signs · Women's safety · Healthcare
-        </p>
+        <div className="relative">
+          <h2 className="t-display text-white max-w-md">Learn the signs that keep you safe.</h2>
+          <p className="text-white/65 mt-4 max-w-md leading-relaxed">
+            A learning companion built for women — practise essential sign language for emergencies,
+            healthcare and personal safety.
+          </p>
+          <ul className="mt-8 space-y-3.5">
+            {BENEFITS.map((b) => (
+              <li key={b} className="flex items-center gap-3 text-white/85">
+                <span className="grid place-items-center w-6 h-6 rounded-pill bg-accent/20 text-accent shrink-0">
+                  <CheckIcon className="w-4 h-4" />
+                </span>
+                <span className="text-[14px]">{b}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <p className="relative text-white/40 text-[12px]">Women's safety · Healthcare · Emergencies</p>
+      </div>
+
+      {/* Form panel */}
+      <div className="min-h-screen lg:min-h-0 flex flex-col justify-center bg-cream px-6 py-12">
+        <div className="w-full max-w-sm mx-auto animate-fadeUp">
+          <div className="flex items-center gap-2.5 mb-8 lg:hidden">
+            <Logo className="w-10 h-10" />
+            <span className="text-xl font-extrabold tracking-tightest text-navy">SakhiSign</span>
+          </div>
+          <h1 className="t-h1 text-navy">{title}</h1>
+          <p className="t-body mt-1.5 mb-6">{subtitle}</p>
+          {children}
+        </div>
       </div>
     </div>
   );

@@ -19,7 +19,7 @@ export default function SignupPage() {
     setError(null);
     try {
       await signup(form.name, form.email, form.password);
-      navigate("/learn", { replace: true });
+      navigate("/", { replace: true });
     } catch (err) {
       setError(err.response?.data?.error || "Signup failed");
     } finally {
@@ -39,7 +39,7 @@ export default function SignupPage() {
         </button>
       </form>
 
-      <button className="btn-ghost w-full mt-3" onClick={() => continueAsGuest().then(() => navigate("/learn"))} disabled={busy}>
+      <button className="btn-ghost w-full mt-3" onClick={() => continueAsGuest().then(() => navigate("/"))} disabled={busy}>
         Continue as Guest
       </button>
 
