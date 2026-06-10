@@ -154,7 +154,7 @@ function PracticeSession({ slug }) {
 
       {/* Webcam stage */}
       <div className="card overflow-hidden">
-        <div className="relative aspect-video w-full bg-navy-900">
+        <div className="relative aspect-video min-h-[320px] w-full bg-navy-900">
           <video ref={videoRef} playsInline muted className="absolute inset-0 w-full h-full object-cover -scale-x-100" />
 
           {/* Live hand-skeleton overlay (color-coded per finger) */}
@@ -224,8 +224,8 @@ function PracticeSession({ slug }) {
                   <CameraIcon className="w-10 h-10 mx-auto mb-3 text-accent" />
                   <p className="t-h3">Camera access needed</p>
                   <p className="text-[13px] text-white/65 mt-1.5 mb-4 leading-relaxed">
-                    SakhiSign needs your camera to watch your hands and score your sign. Your video
-                    stays on your device — only hand positions are analysed, never uploaded.
+                    We need your camera to score your sign. Your video stays on your device — only
+                    hand positions are analysed.
                   </p>
                   <button className="btn-primary" onClick={start}>Enable camera</button>
                 </div>
