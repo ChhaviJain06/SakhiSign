@@ -1,7 +1,10 @@
 import axios from "axios";
 import { env } from "../config/env.js";
 
-const ai = axios.create({ baseURL: env.aiServiceUrl, timeout: 15000 });
+// 90s timeout: free-tier hosts (Render) sleep when idle and take 30-60s to
+// cold-start, so the first request after a nap needs room to wait rather than
+// failing with a 502.
+const ai = axios.create({ baseURL: env.aiServiceUrl, timeout: 90000 });
 
 /**
  * Forward a landmark sequence to the FastAPI AI service for evaluation.
