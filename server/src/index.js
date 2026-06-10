@@ -10,7 +10,10 @@ import dashboardRoutes from "./routes/dashboard.js";
 
 const app = express();
 
-app.use(cors({ origin: env.corsOrigins, credentials: true }));
+// CORS_ORIGIN="*" -> reflect any origin (works with credentials, unlike a raw
+// "*"). Otherwise only the listed origins are allowed.
+const corsOrigin = env.corsOrigins.includes("*") ? true : env.corsOrigins;
+app.use(cors({ origin: corsOrigin, credentials: true }));
 app.use(express.json({ limit: "10mb" })); // landmark payloads can be sizeable
 
 app.get("/api/health", (_req, res) => res.json({ status: "ok" }));
