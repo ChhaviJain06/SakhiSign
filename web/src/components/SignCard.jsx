@@ -12,7 +12,7 @@ import { categoryPill, scoreColor, scoreBar, SIGN_TAGLINE } from "../lib/ui.js";
 export default function SignCard({ sign }) {
   const navigate = useNavigate();
   const score = sign.lastScore;
-  const practised = score != null;
+  const practiced = score != null;
 
   return (
     <button
@@ -24,7 +24,7 @@ export default function SignCard({ sign }) {
       {/* Top */}
       <div className="flex items-start justify-between gap-2">
         <SignGlyph slug={sign.slug} size="md" />
-        <span className={`pill ${scoreColor(score)}`}>{practised ? `${score}%` : "New"}</span>
+        <span className={`pill ${scoreColor(score)}`}>{practiced ? `${score}%` : "New"}</span>
       </div>
 
       {/* Middle */}
@@ -48,7 +48,7 @@ export default function SignCard({ sign }) {
         </div>
         <div className="flex items-center justify-between">
           <span className="text-[13px] font-semibold text-accent-dark">
-            {practised ? "Continue learning" : "Start learning"}
+            {practiced ? "Continue learning" : "Start learning"}
           </span>
           <span className="grid place-items-center w-7 h-7 rounded-pill bg-cream text-navy
                            transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden>

@@ -38,8 +38,8 @@ export default function DashboardPage() {
   const practiced = signs.filter((s) => s.attempts > 0).length;
   const insight =
     summary && summary.totalAttempts > 0
-      ? `You've practised ${practiced} of ${signs.length} signs at ${summary.averageAccuracy}% average accuracy.`
-      : "Practise your first sign to start tracking progress here.";
+      ? `You've practiced ${practiced} of ${signs.length} signs at ${summary.averageAccuracy}% average accuracy.`
+      : "Practice your first sign to start tracking progress here.";
 
   const fmtDate = (t) =>
     t ? new Date(t).toLocaleDateString(undefined, { month: "short", day: "numeric" }) : "";
@@ -112,14 +112,14 @@ export default function DashboardPage() {
                       />
                     </div>
                     <p className="text-[11px] text-ink-faint mt-1.5">
-                      {s.attempts ? `${verdictLabel(s.mastery)} · ${s.attempts} attempt${s.attempts > 1 ? "s" : ""}` : "Not practised yet"}
+                      {s.attempts ? `${verdictLabel(s.mastery)} · ${s.attempts} attempt${s.attempts > 1 ? "s" : ""}` : "Not practiced yet"}
                     </p>
                   </div>
                   <button
                     className="btn-ghost text-[13px] px-4 min-h-[40px] shrink-0"
                     onClick={() => navigate(`/practice/${s.slug}`)}
                   >
-                    Practise
+                    Practice
                   </button>
                 </div>
               ))}
@@ -135,7 +135,7 @@ export default function DashboardPage() {
           <div className="card p-8 text-center">
             <p className="t-h3 text-navy">No attempts yet</p>
             <p className="t-caption mt-1">Your practice history will appear here.</p>
-            <button className="btn-primary mt-4" onClick={() => navigate("/practice")}>Start practising</button>
+            <button className="btn-primary mt-4" onClick={() => navigate("/practice")}>Start practicing</button>
           </div>
         ) : (
           <div className="card divide-y divide-navy/[0.06]">

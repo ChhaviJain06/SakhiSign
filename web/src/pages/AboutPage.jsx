@@ -10,7 +10,7 @@ const MISSION = [
 const STEPS = [
   { n: 1, t: "Choose a sign", d: "Pick what you want to learn from the home page." },
   { n: 2, t: "Watch the tutorial", d: "See exactly how the sign is formed and moved." },
-  { n: 3, t: "Practise on camera", d: "Perform the sign — your hands are tracked live." },
+  { n: 3, t: "Practice on camera", d: "Perform the sign — your hands are tracked live." },
   { n: 4, t: "Get AI feedback", d: "Receive a score and specific tips on what to refine." },
 ];
 
@@ -28,7 +28,7 @@ export default function AboutPage() {
           possible or safe.
         </p>
         <p className="t-body mt-3 max-w-2xl">
-          You choose a sign, learn it, and practise it on camera. Our AI then evaluates how closely
+          You choose a sign, learn it, and practice it on camera. Our AI then evaluates how closely
           your performance matches the reference and gives you a score with clear, specific feedback —
           so you can build real confidence in signs that could one day make a difference.
         </p>
@@ -73,12 +73,12 @@ export default function AboutPage() {
         <h2 className="t-h2 mb-2">Evaluation, not guesswork</h2>
         <p className="text-white/80 text-[14px] leading-relaxed max-w-2xl">
           SakhiSign doesn't try to guess which sign you're making. You tell it the sign you want to
-          practise, and it measures how accurately you performed that specific sign — comparing
+          practice, and it measures how accurately you performed that specific sign — comparing
           hand shape, position, movement and timing against a reference. That's what makes the
           feedback precise and genuinely useful for learning.
         </p>
         <button className="btn-primary mt-4" onClick={() => navigate("/")}>
-          Start practising
+          Start practicing
         </button>
       </section>
     </div>

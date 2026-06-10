@@ -69,7 +69,7 @@ export default function LoginPage() {
 }
 
 const BENEFITS = [
-  "Practise on camera with instant AI feedback",
+  "Practice on camera with instant AI feedback",
   "Learn key signs for emergencies and healthcare",
   "Built for women's safety and independence",
 ];
@@ -86,7 +86,7 @@ export function AuthLayout({ title, subtitle, children }) {
         <div className="relative">
           <h2 className="t-display text-white max-w-md">Learn the signs that keep you safe.</h2>
           <p className="text-white/65 mt-4 max-w-md leading-relaxed">
-            A learning companion built for women — practise essential sign language for emergencies,
+            A learning companion built for women — practice essential sign language for emergencies,
             healthcare and personal safety.
           </p>
           <ul className="mt-8 space-y-3.5">

@@ -132,8 +132,8 @@ export default function SignDetailPage() {
           <AttemptReview attempt={sign.lastAttempt} />
         ) : (
           <div className="surface p-5 text-center">
-            <p className="t-body">You haven't practised this sign yet.</p>
-            <p className="t-caption mt-0.5">Practise it to see your score and feedback here.</p>
+            <p className="t-body">You haven't practiced this sign yet.</p>
+            <p className="t-caption mt-0.5">Practice it to see your score and feedback here.</p>
           </div>
         )}
       </section>
@@ -141,7 +141,7 @@ export default function SignDetailPage() {
       {/* CTA */}
       <div className="flex gap-2">
         <button className="btn-primary flex-1" onClick={() => navigate(`/practice/${sign.slug}`)}>
-          {sign.lastAttempt ? "Practise Again" : "Start Practice"}
+          {sign.lastAttempt ? "Practice Again" : "Start Practice"}
         </button>
         <button className="btn-ghost flex-1" onClick={() => navigate("/learn")}>
           Back to Signs

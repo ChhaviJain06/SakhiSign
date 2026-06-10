@@ -20,7 +20,7 @@ function PracticePicker() {
       <div>
         <p className="eyebrow mb-1">Camera practice</p>
         <h1 className="t-h1 text-navy">Practice</h1>
-        <p className="t-caption mt-0.5">Pick a sign to practise with your camera.</p>
+        <p className="t-caption mt-0.5">Pick a sign to practice with your camera.</p>
       </div>
       <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
         {loading
@@ -232,7 +232,7 @@ function PracticeSession({ slug }) {
               ) : status === "error" ? (
                 <div className="text-white max-w-sm">
                   <CameraIcon className="w-9 h-9 mx-auto mb-2 text-white/70" />
-                  <p className="t-h3">Camera is required to practise</p>
+                  <p className="t-h3">Camera is required to practice</p>
                   <p className="text-[13px] text-white/65 mt-1.5 mb-4 leading-relaxed">{error}</p>
                   <button className="btn-glass" onClick={start}>Try again</button>
                 </div>
