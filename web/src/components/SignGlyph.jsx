@@ -1,5 +1,6 @@
 import {
   PulseIcon, HandIcon, StethoscopeIcon, PillIcon, DropletIcon, LifeBuoyIcon,
+  AlertIcon, ToiletIcon, BandageIcon,
 } from "./icons.jsx";
 
 // Clean line-icon glyph per sign, in a soft tinted tile (replaces emojis for a
@@ -10,6 +11,9 @@ const MAP = {
   doctor: { Icon: StethoscopeIcon, cls: "bg-teal-50 text-teal-600" },
   medicine: { Icon: PillIcon, cls: "bg-violet-50 text-violet-500" },
   water: { Icon: DropletIcon, cls: "bg-sky-50 text-sky-500" },
+  toilet: { Icon: ToiletIcon, cls: "bg-cyan-50 text-cyan-600" },
+  danger: { Icon: AlertIcon, cls: "bg-red-50 text-red-600" },
+  wound: { Icon: BandageIcon, cls: "bg-pink-50 text-pink-600" },
 };
 
 const SIZES = {

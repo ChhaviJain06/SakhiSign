@@ -57,7 +57,7 @@ export default function SignDetailPage() {
           ) : tutorial?.youtube ? (
             <iframe
               className="w-full h-full"
-              src={`https://www.youtube.com/embed/${tutorial.youtube}`}
+              src={`https://www.youtube.com/embed/${tutorial.youtube}${tutorial.start ? `?start=${tutorial.start}` : ""}`}
               title={`${sign.name} tutorial`}
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen

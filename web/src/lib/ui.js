@@ -67,6 +67,9 @@ export const SIGN_TAGLINE = {
   doctor: "Ask for a doctor or medical aid.",
   medicine: "Request medicine you need.",
   water: "Ask for water.",
+  toilet: "Ask for the toilet or restroom.",
+  danger: "Warn others of danger nearby.",
+  wound: "Show that you have a wound or injury.",
 };
 
 /**
@@ -122,6 +125,30 @@ export const SIGN_INFO = {
     safety:
       "It’s simple and universally understood, which makes it a great first sign to learn and remember under stress.",
   },
+  toilet: {
+    meaning:
+      "Tells someone that you need to use the toilet or restroom.",
+    usage:
+      "Use it to ask for the bathroom when you can’t say it aloud — helpful in hospitals, unfamiliar places, or for children.",
+    safety:
+      "A simple everyday need, but important for dignity and comfort when speaking isn’t possible.",
+  },
+  danger: {
+    meaning:
+      "Warns that there is danger or a threat nearby.",
+    usage:
+      "Use it to alert the people around you to a hazard, an unsafe situation, or a person to be wary of.",
+    safety:
+      "Pair it with the Help sign so others don’t just notice the danger — they act on it.",
+  },
+  wound: {
+    meaning:
+      "Shows that you are injured or have a wound, and roughly where it is.",
+    usage:
+      "Use it to tell a helper or medic that you’re hurt and the injury needs attention.",
+    safety:
+      "Point to the wound right after making the sign so help knows exactly where to look.",
+  },
 };
 
 export function getSignInfo(slug) {
@@ -142,7 +169,12 @@ export function getSignInfo(slug) {
 export const SIGN_TUTORIAL = {
   pain: { src: "/media/pain.gif" },
   help: { src: "/media/help.gif" },
-  // doctor / medicine / water — add files to web/public/media/ then map here.
+  medicine: { youtube: "9odwds_amPo", start: 4 },
+  water: { youtube: "5FSC6Og1RBQ", start: 1 },
+  doctor: { youtube: "-5lgXJQG0EM" },
+  toilet: { youtube: "p8-zJttOAKc" },
+  danger: { youtube: "xVuM_WPsOB8" },
+  wound: { youtube: "_I7a-SaQTbQ" },
 };
 
 export function getTutorial(slug) {

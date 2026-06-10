@@ -79,6 +79,12 @@ export const DropletIcon = (p) => (
 export const LifeBuoyIcon = (p) => (
   <svg viewBox="0 0 24 24" className={p.className} {...base}><circle cx="12" cy="12" r="9" /><circle cx="12" cy="12" r="4" /><path d="M5 5l4 4M15 15l4 4M19 5l-4 4M9 15l-4 4" /></svg>
 );
+export const ToiletIcon = (p) => (
+  <svg viewBox="0 0 24 24" className={p.className} {...base}><path d="M7 4v5" /><path d="M5 9h9c0 3.5-2.4 6-5 6s-5-2.5-5-6z" /><path d="M8 15l-1.2 4M11 15l1.2 4" /><path d="M14 6h3v4" /></svg>
+);
+export const BandageIcon = (p) => (
+  <svg viewBox="0 0 24 24" className={p.className} {...base}><g transform="rotate(-45 12 12)"><rect x="4" y="8.5" width="16" height="7" rx="3.5" /><rect x="9" y="8.5" width="6" height="7" /><path d="M10.7 11h.01M13.3 11h.01M10.7 13h.01M13.3 13h.01" /></g></svg>
+);
 
 // --- Stat icons -------------------------------------------------------------
 export const TrophyIcon = (p) => (

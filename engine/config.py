@@ -173,6 +173,57 @@ SIGNS = {
         mirror=True,
         media={"gif": "/media/water.gif", "video": "/media/water.mp4"},
     ),
+
+    # ------------------------------------------------------------------ #
+    # NEW SIGNS — no reference recording yet.                            #
+    # `hands` (1 or 2) is my best guess; change it to match the sign you  #
+    # actually record. Record with:  python record_sign.py <name>        #
+    # ------------------------------------------------------------------ #
+    "toilet": SignConfig(
+        name="toilet",
+        display="Toilet",
+        hands=1,  # guess — adjust if you record it two-handed
+        description="A one-handed sign for 'toilet' / restroom.",
+        instructions=[
+            "Form the handshape shown in the tutorial video.",
+            "Perform the motion clearly and at a steady pace.",
+            "Keep your hand within the camera frame.",
+        ],
+        group_multipliers={"shape": 1.0, "openness": 1.0, "relation": 0.0},
+        tau=1.0,
+        mirror=True,
+        media={"gif": "/media/toilet.gif", "video": "/media/toilet.mp4"},
+    ),
+    "danger": SignConfig(
+        name="danger",
+        display="Danger",
+        hands=2,  # guess — danger is often two-handed; adjust if needed
+        description="A two-handed sign warning of danger.",
+        instructions=[
+            "Position both hands as shown in the tutorial video.",
+            "Perform the motion clearly and at a steady pace.",
+            "Keep both hands within the camera frame.",
+        ],
+        group_multipliers={"shape": 1.0, "openness": 0.9, "relation": 1.3},
+        tau=1.0,
+        mirror=True,
+        media={"gif": "/media/danger.gif", "video": "/media/danger.mp4"},
+    ),
+    "wound": SignConfig(
+        name="wound",
+        display="Wound",
+        hands=2,  # guess — adjust if you record it one-handed
+        description="A sign indicating a wound or injury, and where it is.",
+        instructions=[
+            "Position your hand(s) as shown in the tutorial video.",
+            "Perform the motion clearly and at a steady pace.",
+            "Keep your hand(s) within the camera frame.",
+        ],
+        group_multipliers={"shape": 1.0, "openness": 1.0, "relation": 1.2},
+        tau=1.75,
+        mirror=True,
+        media={"gif": "/media/wound.gif", "video": "/media/wound.mp4"},
+    ),
 }
 
 

@@ -54,7 +54,20 @@ def main():
         min_tracking_confidence=0.7,
     )
 
-    cap = cv2.VideoCapture(0)
+    # Open the webcam. On Windows the DirectShow backend is the most reliable;
+    # fall back to the default and to camera index 1 if needed.
+    cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
+    if not cap.isOpened():
+        cap = cv2.VideoCapture(0)
+    if not cap.isOpened():
+        cap = cv2.VideoCapture(1, cv2.CAP_DSHOW)
+    if not cap.isOpened():
+        print("\nERROR: Could not open the webcam.")
+        print("  - Close any other app using the camera (your browser's Practice page,")
+        print("    Zoom, Meet, Teams, the Windows Camera app), then run this again.")
+        print("  - Make sure no other record_sign.py window is still open.")
+        return
+
     recording = counting = False
     frames = []
     start_t = count_t = None

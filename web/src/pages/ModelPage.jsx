@@ -1,15 +1,18 @@
 import { FINGER_COLORS } from "../lib/ui.js";
 
-const SIGNS = ["pain", "help", "doctor", "medicine", "water"];
+const SIGNS = ["pain", "help", "doctor", "medicine", "water", "toilet", "danger", "wound"];
 
 // Cross-sign validation: each recording scored against every sign's reference.
 // Rows = sign performed, cols = sign it was scored against (calibrated engine).
 const CONFUSION = {
-  pain: [100, 20, 13, 11, 53],
-  help: [23, 100, 33, 23, 13],
-  doctor: [16, 35, 100, 47, 11],
-  medicine: [20, 22, 45, 100, 12],
-  water: [55, 16, 10, 9, 100],
+  pain: [100, 20, 13, 11, 53, 46, 8, 16],
+  help: [23, 100, 33, 23, 13, 19, 26, 40],
+  doctor: [16, 35, 100, 47, 11, 10, 33, 50],
+  medicine: [20, 22, 45, 100, 12, 16, 24, 46],
+  water: [55, 16, 10, 9, 100, 38, 6, 14],
+  toilet: [50, 20, 10, 10, 39, 100, 6, 16],
+  danger: [15, 36, 41, 35, 10, 10, 100, 55],
+  wound: [11, 28, 36, 35, 6, 8, 35, 100],
 };
 
 const PIPELINE = [
@@ -34,10 +37,10 @@ function cellStyle(v, isDiag) {
 
 export default function ModelPage() {
   const STATS = [
-    { label: "Correct attempts scored", value: "74–81%" },
+    { label: "Correct attempts scored", value: "73–85%" },
     { label: "Highest a wrong sign reached", value: "55%" },
     { label: "Pass threshold", value: "65%" },
-    { label: "Separation on validation set", value: "5/5 ✓ · 20/20 ✗" },
+    { label: "Separation on validation set", value: "8/8 ✓ · 56/56 ✗" },
   ];
 
   return (
