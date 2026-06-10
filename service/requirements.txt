@@ -1,0 +1,8 @@
+# Slim requirements for DEPLOYING the FastAPI AI service.
+# The engine (engine/) is pure Python with no third-party deps, and the service
+# never imports OpenCV/MediaPipe (those are only for the local recorder), so the
+# deployed service needs just the web stack — fast, small builds.
+
+fastapi>=0.110
+uvicorn[standard]>=0.29
+pydantic>=2.6
